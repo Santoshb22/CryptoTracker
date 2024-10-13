@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="">
       <Highlights/>
-      <div className="currencies-wrapper -mt-32 bg-white  mx-12 rounded-md p-6 shadow-black shadow-sm">
+      <div className="currencies-wrapper -mt-36 bg-white  mx-12 rounded-md p-6 shadow-black shadow-sm">
         <Currencies/>
       </div>
     </div>
