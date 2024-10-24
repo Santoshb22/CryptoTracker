@@ -24,7 +24,7 @@ const AssetsHighlights = () => {
             </div>
 
             <div className="crypto-coin">
-            <p className="text-4xl">{assets.data.name} <span className="text-lg">{assets.data.symbol}</span></p>
+            <p className="text-4xl">{assets.data.name} <span className="text-lg">({assets.data.symbol})</span></p>
             <p>{formatCurrency(assets.data.priceUsd)}</p>
             </div>
         </div>
