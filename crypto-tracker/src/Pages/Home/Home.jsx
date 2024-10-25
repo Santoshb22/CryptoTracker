@@ -3,9 +3,10 @@ import Highlights from "../../Components/Highlights"
 
 const Home = () => {
   return (
-    <div className="">
+    <div>
       <Highlights/>
-      <div className="currencies-wrapper -mt-36 bg-white  mx-12 rounded-md p-6 shadow-black shadow-sm">
+
+      <div className="currencies-wrapper -mt-36 bg-white  mx-12 rounded-md p-6 shadow-black shadow-sm mb-10">
         <Currencies/>
       </div>
     </div>

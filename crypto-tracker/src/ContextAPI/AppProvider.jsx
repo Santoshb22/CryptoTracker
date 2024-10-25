@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { currencyContext, currencyAssets, exchangesContext } from "./context"
+import { currencyContext, currencyAssets, exchangesContext, crytpoHistoryContext } from "./context"
 
 const AppProvider = ({children}) => {
 
@@ -7,10 +7,12 @@ const [currencies, setCurrencies] = useState(null);
 const [assets, setAssets] = useState(null);
 const [currencyName, setCurrencyName] = useState("");
 const [exchanges, setEchanges] = useState(null);
+const [cryptoHistory, setCryptoHistory] = useState(null);
 
 const currencyApi = "https://api.coincap.io/v2/assets";
 const currencyAssetsApi = `https://api.coincap.io/v2/assets/${currencyName.toLowerCase()}`;
 const exchangesApi = "https://api.coincap.io/v2/exchanges";
+const cryptoHistoryApi = `https://api.coincap.io/v2/assets/${currencyName.toLowerCase()}/history?interval=d1`
 
 useEffect(() =>{
     (async function fetchCurrency(){
@@ -31,7 +33,6 @@ useEffect(() => {
         try {
             const res = await fetch(currencyAssetsApi);
             const data = await res.json();
-            console.log(data);
             setAssets(data);
         } catch (error) {
             console.error("Failed to fetch currency assets:", error);
@@ -52,7 +53,23 @@ useEffect(() => {
     })()
 }, [])
 
+useEffect(() => {
+    if(!currencyName) return ;
+
+    (async function fetchCryptoHistory() {
+        try {
+            const res = await fetch(cryptoHistoryApi);
+            const data = await res.json();
+            console.log(data.data);
+            setCryptoHistory(data.data)
+        } catch (error) {
+            console.error("Failed to fetch crypto history:", error);
+        }
+    })()
+}, [currencyName])
+
   return (
+    <crytpoHistoryContext.Provider value = {{cryptoHistory}}>
     <exchangesContext.Provider value = {{exchanges}}>
     <currencyAssets.Provider value = {{assets, setCurrencyName, currencyName}}>
     <currencyContext.Provider value = {{currencies}}>
@@ -60,6 +77,7 @@ useEffect(() => {
     </currencyContext.Provider>
     </currencyAssets.Provider>
     </exchangesContext.Provider>
+    </crytpoHistoryContext.Provider>
   )
 }
 

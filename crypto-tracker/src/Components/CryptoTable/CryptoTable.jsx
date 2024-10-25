@@ -57,7 +57,7 @@ const CryptoTable = ({currenciesData, exchangesData}) => {
             {showItemsOnPage.length > 0 && (
             showItemsOnPage.map((currency) => (
                 <tr 
-                 className="px-2 hover:bg-slate-200 cursor-pointer"
+                 className="px-2 hover:bg-slate-200 cursor-pointer border-b"
                  key = {currency.id}
                  onClick = {() => hnadleCurrencyAssets(currency.name)}
                  >
@@ -74,9 +74,9 @@ const CryptoTable = ({currenciesData, exchangesData}) => {
                     <td>{formatCurrency(currency.priceUsd)}</td>
                     <td>{formatCurrency(currency.marketCapUsd)}</td>
                     <td>{formatCurrency(currency.vwap24Hr)}</td>
-                    <td>{currency.supply}</td>
+                    <td>{formatCurrency(currency.supply)}</td>
                     <td>{formatCurrency(currency.volumeUsd24Hr)}</td>
-                    <td>{currency.changePercent24Hr}%</td>
+                    <td className={currency.changePercent24Hr > 0? "text-green-500" : "text-red-500"} >{formatCurrency(currency.changePercent24Hr)}%</td>
                 </tr>
             ))
             )}
