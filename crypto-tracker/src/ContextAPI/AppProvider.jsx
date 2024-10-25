@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { currencyContext, currencyAssets, exchangesContext, crytpoHistoryContext } from "./context"
+import { currencyContext, currencyAssets, exchangesContext, crytpoHistoryContext, languageContext,chartLogoContext} from "./context"
 
 const AppProvider = ({children}) => {
 
@@ -8,6 +8,8 @@ const [assets, setAssets] = useState(null);
 const [currencyName, setCurrencyName] = useState("");
 const [exchanges, setEchanges] = useState(null);
 const [cryptoHistory, setCryptoHistory] = useState(null);
+const [language, setLanguage] = useState("Eng");
+const [chartLogo, setChartLogo] = useState("");
 
 const currencyApi = "https://api.coincap.io/v2/assets";
 const currencyAssetsApi = `https://api.coincap.io/v2/assets/${currencyName.toLowerCase()}`;
@@ -69,6 +71,8 @@ useEffect(() => {
 }, [currencyName])
 
   return (
+    <chartLogoContext.Provider value={{setChartLogo, chartLogo}}>
+    <languageContext.Provider value={{language, setLanguage}}>
     <crytpoHistoryContext.Provider value = {{cryptoHistory}}>
     <exchangesContext.Provider value = {{exchanges}}>
     <currencyAssets.Provider value = {{assets, setCurrencyName, currencyName}}>
@@ -78,6 +82,8 @@ useEffect(() => {
     </currencyAssets.Provider>
     </exchangesContext.Provider>
     </crytpoHistoryContext.Provider>
+    </languageContext.Provider>
+    </chartLogoContext.Provider>
   )
 }
 

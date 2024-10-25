@@ -1,0 +1,16 @@
+th {
+    text-align: start;
+}
+
+@media (max-width: 768px) {
+    
+    .vwap, .supply, .marketCap, .totalPercent, .status {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .rank, .volume {
+        display: none;
+    }
+}

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { currencyContext } from "../../ContextAPI/context";
 import CryptoTable from "../CryptoTable/CryptoTable";
+import "./Currencies.css";
 
 
 const Currencies = () => {

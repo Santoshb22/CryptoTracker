@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { currencyContext } from "../ContextAPI/context"
+import { currencyContext, languageContext } from "../ContextAPI/context"
 import { useShortNumbers } from "../CustumHooks/useShortNumbers";
 
 const Highlights = () => {
@@ -8,9 +8,7 @@ const Highlights = () => {
   const [totalPercent, setTotalPercent] = useState(0);
   const {currencies} = useContext(currencyContext);
   const formatValue = useShortNumbers();
-
-
-
+  const {language} = useContext(languageContext);
   useEffect(() => {
     if(!currencies) return;
        
@@ -30,13 +28,32 @@ const Highlights = () => {
   }, [currencies])
   
   return (
-    <div className="grid grid-cols-3 lg:grid-cols-6 pt-4 text-center gap-8 text-white font-bold font-mono pb-48 text-xl bg-blue-500 ">
-        <p>MARKET CAP <br /> ${formatValue(totalMarketCap)}</p>
-        <p>EXCHANGE VOL<br /> {formatValue(totalExchangeVolume)}</p>
-        <p>ASSETS <br /> 2,300</p>
-        <p>EXCHANGE <br /> 117</p>
-        <p>MARKETS <br /> 5,906</p>
-        <p>BTC DOM INDEX <br /> {formatValue(totalPercent)}%</p>
+    <div className="text-xs md:text-lg grid grid-cols-3 lg:grid-cols-6 pt-4 text-center gap-8 text-white font-bold font-mono pb-48 text-xl bg-blue-500 ">
+         <p>
+        {language === "Hin" ? "बाज़ार पूंजीकरण" : "MARKET CAP"} <br />
+        ${formatValue(totalMarketCap)}
+      </p>
+      <p>
+        {language === "Hin" ? "विनिमय मात्रा" : "EXCHANGE VOL"}<br />
+        {formatValue(totalExchangeVolume)}
+      </p>
+      <p>
+        {language === "Hin" ? "संपत्तियां" : "ASSETS"} <br />
+        2,300
+      </p>
+      <p>
+        {language === "Hin" ? "विनिमय" : "EXCHANGE"} <br />
+        117
+      </p>
+      <p>
+        {language === "Hin" ? "बाज़ार" : "MARKETS"} <br />
+        5,906
+      </p>
+      <p>
+        {language === "Hin" ? "बीटीसी डोम इंडेक्स" : "BTC DOM INDEX"} <br />
+        {formatValue(totalPercent)}%
+      </p>
+
     </div>
   )
 }

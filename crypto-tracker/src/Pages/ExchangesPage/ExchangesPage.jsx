@@ -4,7 +4,7 @@ const ExchangesPage = () => {
   return (
     <div>
       <Highlights/>
-      <div className="-mt-36 bg-white  mx-12 rounded-md p-6 shadow-black shadow-sm mb-10">
+      <div className="-mt-36 bg-white   mx-2 md:mx-12 rounded-md p-6 shadow-black shadow-sm mb-10">
         <Exchanges/>
       </div>
     </div>
