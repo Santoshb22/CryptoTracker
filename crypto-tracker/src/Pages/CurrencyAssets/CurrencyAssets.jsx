@@ -1,48 +1,40 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useMemo,} from "react"
 import CustomAreaChart from "../../Components/CustomAreaChart"
 import AssetsHighlights from "../../Components/AssetsHighlights"
 import Exchanges from "../../Components/Exchanges"
 import { crytpoHistoryContext } from "../../ContextAPI/context"
 
 const CurrencyAssets = () => {
-
-  const [highPrice, setHighPrice] = useState(0);
-  const [lowPrice, setLowPrice] = useState(0);
-  const [avgPrice, setAvgPrice] = useState(0);
   const {cryptoHistory} = useContext(crytpoHistoryContext);
 
-  useEffect(() => {
-    if(!cryptoHistory) return;
-    console.log(cryptoHistory);
-    function getHigh() {
-      let maxPrice = -Infinity;
-      for(let i = 0; i < cryptoHistory.length; i++) {
-        let price = Number(cryptoHistory[i].priceUsd);
-        if(price > maxPrice) {
-          maxPrice = price;
-        }
-      }
-      return maxPrice;
+  const memoizedPrices = useMemo(() => {
+    if (!cryptoHistory || cryptoHistory.length === 0) {
+      return { highPrice: 0, lowPrice: 0, avgPrice: 0 };
     }
-
-    function getLow() {
-      let minPrice = Infinity;
-      for(let i = 0; i < cryptoHistory.length; i++) {
-        let price = Number(cryptoHistory[i].priceUsd);
-        if(price < minPrice) {
-          minPrice = price;
-        }
-      }
-      return minPrice
-    }
-
-    const totalPrice = cryptoHistory.reduce((acc, item) => acc + Number(item.priceUsd) , 0);
-    const getAvgPrice = totalPrice / cryptoHistory.length;
-
-    setAvgPrice(getAvgPrice.toFixed(2));
-    setHighPrice(getHigh().toFixed(2));
-    setLowPrice(getLow().toFixed(2));
+  
+    let maxPrice = -Infinity;
+    let minPrice = Infinity;
+    let totalPrice = 0;
+  
+    cryptoHistory.forEach((item) => {
+      const price = Number(item.priceUsd); 
+      if (price > maxPrice) maxPrice = price;
+      if (price < minPrice) minPrice = price;
+      totalPrice += price;
+    })
+  
+    const avgPrice = totalPrice / cryptoHistory.length;
+  
+    return {
+      highPrice: maxPrice.toFixed(2),
+      lowPrice: minPrice.toFixed(2),
+      avgPrice: avgPrice.toFixed(2),
+    };
   }, [cryptoHistory])
+
+  const highPrice = memoizedPrices.highPrice;
+  const lowPrice = memoizedPrices.lowPrice;
+  const avgPrice = memoizedPrices.avgPrice;
   return (
     <div>
       <AssetsHighlights/>

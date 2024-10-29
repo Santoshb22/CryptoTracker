@@ -5,13 +5,16 @@ import { useShortNumbers } from "../../CustumHooks/useShortNumbers";
 import styles from "./CryptoTable.module.css";
 
 const CryptoTable = ({currenciesData, exchangesData}) => {
-    const navigate = useNavigate();
-    const [currPage, setCurrPage] = useState(1);
-    const {setCurrencyName} = useContext(currencyAssets);
-    const [data, setData] = useState(null);
-    const formattCurrency = useShortNumbers();
     const {language} = useContext(languageContext);
     const {setChartLogo} = useContext(chartLogoContext);
+    const {setCurrencyName} = useContext(currencyAssets);
+
+    const navigate = useNavigate();
+
+    const [currPage, setCurrPage] = useState(1);
+    const [data, setData] = useState(null);
+    
+    const formattCurrency = useShortNumbers();
 
     useEffect(() => {
         if (currenciesData || exchangesData) {

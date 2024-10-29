@@ -12,6 +12,7 @@ const AssetsHighlights = () => {
     const handleExplorer = () => {
         window.open(assets.data.explorer);
     }
+    
   return (
     <div className="bg-blue-500 p-2 sm:h-40 text-white text-xs md:text-md flex sm:grid sm:grid-cols-3 gap-4 items-center justify-evenly">
 

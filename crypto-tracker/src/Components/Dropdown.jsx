@@ -1,11 +1,13 @@
-import { useContext } from "react"
+import { useCallback, useContext } from "react"
 import { languageContext } from "../ContextAPI/context"
 
 const Dropdown = () => {
   const {setLanguage} = useContext(languageContext);
-  const handleSetLanguage = (e) => {
+  
+  const handleSetLanguage = useCallback((e) => {
     setLanguage(e.target.value)
-  }
+  }, [setLanguage])
+
   return (
     <div>
         <select 

@@ -5,9 +5,9 @@ import "./Currencies.css";
 
 
 const Currencies = () => {
-   
     const {currencies} = useContext(currencyContext);
     if(!currencies) return;
+
     return (
         <div>
             <CryptoTable currenciesData = {currencies}/>
