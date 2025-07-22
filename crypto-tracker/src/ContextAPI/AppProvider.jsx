@@ -10,11 +10,13 @@ const [exchanges, setEchanges] = useState(null);
 const [cryptoHistory, setCryptoHistory] = useState(null);
 const [language, setLanguage] = useState("Eng");
 const [chartLogo, setChartLogo] = useState("");
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+const apiKey = import.meta.env.VITE_API_KEY;
 
-const currencyApi = "https://api.coincap.io/v2/assets";
-const currencyAssetsApi = `https://api.coincap.io/v2/assets/${currencyName.toLowerCase()}`;
-const exchangesApi = "https://api.coincap.io/v2/exchanges";
-const cryptoHistoryApi = `https://api.coincap.io/v2/assets/${currencyName.toLowerCase()}/history?interval=d1`
+const currencyApi = `${baseURL}/assets?apiKey=${apiKey}`;
+const currencyAssetsApi = `${baseURL}/assets/${currencyName.toLowerCase()}?apiKey=${apiKey}`;
+const exchangesApi = `${baseURL}/exchanges?apiKey=${apiKey}`;
+const cryptoHistoryApi = `${baseURL}assets/${currencyName.toLowerCase()}/history?interval=d1&apiKey=${apiKey}`
 
 useEffect(() =>{
     (async function fetchCurrency(){
@@ -62,7 +64,7 @@ useEffect(() => {
         try {
             const res = await fetch(cryptoHistoryApi);
             const data = await res.json();
-            console.log(data.data);
+            console.log(data);
             setCryptoHistory(data.data)
         } catch (error) {
             console.error("Failed to fetch crypto history:", error);
