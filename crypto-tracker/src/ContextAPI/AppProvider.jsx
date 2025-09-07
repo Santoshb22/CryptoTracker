@@ -16,7 +16,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const currencyApi = `${baseURL}/assets?apiKey=${apiKey}`;
 const currencyAssetsApi = `${baseURL}/assets/${currencyName.toLowerCase()}?apiKey=${apiKey}`;
 const exchangesApi = `${baseURL}/exchanges?apiKey=${apiKey}`;
-const cryptoHistoryApi = `${baseURL}assets/${currencyName.toLowerCase()}/history?interval=d1&apiKey=${apiKey}`
+const cryptoHistoryApi = `${baseURL}/assets/${currencyName.toLowerCase()}/history?interval=d1&apiKey=${apiKey}`
 
 useEffect(() =>{
     (async function fetchCurrency(){

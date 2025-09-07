@@ -1,8 +1,17 @@
-# React + Vite
+# Crypto Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application that provides real-time data and analytics for various cryptocurrencies, including market capitalization, exchange volumes, and historical price data.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Currency
+2. Exchanges
+3. Currency Graph
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/yourusername/crypto-dashboard.git](https://github.com/Santoshb22/CryptoTracker.git)
+   cd crypto-dashboard
+   npm install
